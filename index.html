@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masterstroke Bank | Customer Feedback</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">✦ MASTERSTROKE BANK</div>
+        <div class="tagline">YOUR MONEY. YOUR MASTERSTROKE.</div>
+    </header>
+
+    <main>
+        <section class="welcome">
+            <h1>Your Voice Matters.</h1>
+            <p>We value your trust. Share your experience and help us serve you better.</p>
+        </section>
+
+        <section class="feedback-card">
+            <h2>Share Your Experience</h2>
+            <p class="subtitle">Your feedback helps us improve.</p>
+
+            <form id="feedbackForm">
+
+                <label for="name">Your Name (Optional)</label>
+                <input type="text" id="name" placeholder="Enter your name">
+
+                <label>Rate Your Experience</label>
+                <div class="stars">
+                    <span data-rating="1">★</span>
+                    <span data-rating="2">★</span>
+                    <span data-rating="3">★</span>
+                    <span data-rating="4">★</span>
+                    <span data-rating="5">★</span>
+                </div>
+
+                <input type="hidden" id="rating" required>
+
+                <label for="experience">Overall Experience</label>
+                <select id="experience" required>
+                    <option value="">Select your experience</option>
+                    <option>Excellent</option>
+                    <option>Good</option>
+                    <option>Average</option>
+                    <option>Poor</option>
+                </select>
+
+                <label for="feedback">Your Feedback</label>
+                <textarea id="feedback" rows="5"
+                    placeholder="Tell us about your experience..."
+                    required></textarea>
+
+                <button type="submit" id="submitBtn">
+                    Submit Feedback
+                </button>
+
+                <p id="status"></p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        © 2026 Masterstroke Bank. All Rights Reserved.
+        <p>Your Money. Your Masterstroke.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
