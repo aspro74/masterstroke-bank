@@ -1,46 +1,86 @@
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx0fJwhwgSeT4zokdjGVyd7FDbtLerFxJnGX-bfEuKlTJnO8EK-625tAB2LEL0YfMFh/exec";
+const SCRIPT_URL = "YOUR_EXISTING_GOOGLE_APPS_SCRIPT_URL";
 
-// STAR RATING
-const stars = document.querySelectorAll(".stars span");
-const ratingInput = document.getElementById("rating");
+// CREATE RATING BUTTONS
+function createRating(containerId, count, type) {
+    const container = document.querySelector(
+        `#${containerId} .number-buttons`
+    );
 
-stars.forEach((star) => {
-    star.addEventListener("click", () => {
-        const rating = Number(star.dataset.rating);
+    const start = type === "recommend" ? 0 : 1;
 
-        ratingInput.value = rating;
+    for (let i = start; i <= count; i++) {
+        const button = document.createElement("button");
 
-        stars.forEach((s) => {
-            s.classList.toggle(
-                "active",
-                Number(s.dataset.rating) <= rating
-            );
+        button.type = "button";
+        button.textContent = i;
+
+        // RATING COLOURS
+        if (type === "recommend") {
+            if (i >= 9) {
+                button.classList.add("high");
+            } else if (i >= 7) {
+                button.classList.add("mid");
+            }
+        } else {
+            if (i >= 6) {
+                button.classList.add("high");
+            } else if (i >= 3) {
+                button.classList.add("mid");
+            }
+        }
+
+        // SELECT RATING
+        button.addEventListener("click", () => {
+            container.querySelectorAll("button")
+                .forEach(b => b.classList.remove("selected"));
+
+            button.classList.add("selected");
+
+            if (type === "recommend") {
+                recommendation = String(i);
+            } else {
+                ease = String(i);
+            }
         });
-    });
-});
 
-// FEEDBACK FORM
+        container.appendChild(button);
+    }
+}
+
+// SELECTED RATINGS
+let recommendation = "";
+let ease = "";
+
+// GENERATE RATING BUTTONS
+createRating("recommendOptions", 10, "recommend");
+createRating("easeOptions", 7, "ease");
+
+// FORM ELEMENTS
 const form = document.getElementById("feedbackForm");
 const statusMessage = document.getElementById("status");
 const submitBtn = document.getElementById("submitBtn");
 
+// SUBMIT FEEDBACK
 form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const name = document.getElementById("name").value.trim();
     const email = document.getElementById("email").value.trim();
     const contact = document.getElementById("contact").value.trim();
-    const rating = ratingInput.value;
+    const service = document.getElementById("service").value;
     const feedback = document.getElementById("feedback").value.trim();
 
-    if (!rating) {
-        statusMessage.textContent = "Please select a star rating.";
+    // VALIDATION
+    if (!recommendation || !ease) {
+        statusMessage.textContent =
+            "Please complete both rating categories.";
         statusMessage.style.color = "red";
         return;
     }
 
-    if (!feedback) {
-        statusMessage.textContent = "Please enter your feedback.";
+    if (!service || !feedback) {
+        statusMessage.textContent =
+            "Please complete all required fields.";
         statusMessage.style.color = "red";
         return;
     }
@@ -49,7 +89,9 @@ form.addEventListener("submit", async (event) => {
         name: name || "Anonymous",
         email: email,
         contact: contact,
-        rating: rating,
+        recommendation: recommendation,
+        ease: ease,
+        service: service,
         feedback: feedback
     };
 
@@ -73,11 +115,12 @@ form.addEventListener("submit", async (event) => {
         statusMessage.style.color = "green";
 
         form.reset();
-        ratingInput.value = "";
 
-        stars.forEach((star) => {
-            star.classList.remove("active");
-        });
+        recommendation = "";
+        ease = "";
+
+        document.querySelectorAll(".number-buttons button")
+            .forEach(button => button.classList.remove("selected"));
 
     } catch (error) {
         statusMessage.textContent =
