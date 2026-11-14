@@ -211,46 +211,66 @@ header {
     margin: 25px 0;
 }
 
+/* COMPACT RATING BUTTONS */
+
 .number-rating {
-    margin-top: 12px;
-    margin-bottom: 25px;
+    margin-top: 10px;
+    margin-bottom: 22px;
 }
 
 .number-rating .rating-label {
     display: inline-block;
-    font-size: 12px;
+    font-size: 11px;
     color: #68758a;
-    margin: 5px 0;
+    margin: 4px 0;
 }
 
 .number-buttons {
     display: grid;
     grid-template-columns: repeat(11, minmax(0, 1fr));
-    gap: 5px;
+    gap: 7px;
     margin: 10px 0;
 }
 
 .number-buttons button {
-    padding: 10px 0;
+    width: 100%;
+    min-width: 0;
+    height: 34px;
+    padding: 0;
     margin: 0;
-    font-size: 13px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 2px solid transparent;
     border-radius: 6px;
     color: white;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+/* RED */
+.number-buttons button {
     background: #c83b43;
 }
 
+/* ORANGE */
 .number-buttons button.mid {
     background: #d58b24;
 }
 
+/* GREEN */
 .number-buttons button.high {
     background: #478c55;
 }
 
+/* SELECTED BUTTON */
 .number-buttons button.selected {
-    outline: 3px solid #101d35;
+    background: #101d35 !important;
+    color: #ffffff !important;
+    border: 2px solid #d5a84b !important;
+    outline: 2px solid #101d35;
     outline-offset: 2px;
-    transform: translateY(-2px);
+    transform: scale(1.08);
+    box-shadow: 0 3px 9px rgba(16, 29, 53, 0.25);
 }
 
 #easeOptions .number-buttons {
@@ -259,11 +279,11 @@ header {
 
 @media (max-width: 400px) {
     .number-buttons {
-        gap: 3px;
+        gap: 4px;
     }
 
     .number-buttons button {
-        font-size: 11px;
-        padding: 8px 0;
+        height: 30px;
+        font-size: 10px;
     }
 }
