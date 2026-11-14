@@ -26,7 +26,8 @@
             <h2>Share Your Experience</h2>
             <p class="subtitle">Your feedback helps us improve.</p>
 
-  <form id="feedbackForm">
+
+<form id="feedbackForm">
 
     <label for="name">Your Name (Optional)</label>
     <input type="text" id="name" placeholder="Enter your name">
@@ -37,20 +38,42 @@
     <label for="contact">Contact Number (Optional)</label>
     <input type="tel" id="contact" placeholder="Enter your contact number">
 
-    <label>Rate Your Experience</label>
-    <div class="stars">
-        <span data-rating="1">★</span>
-        <span data-rating="2">★</span>
-        <span data-rating="3">★</span>
-        <span data-rating="4">★</span>
-        <span data-rating="5">★</span>
+    <hr>
+
+    <label>1. How likely are you to recommend Masterstroke Bank to friends and family?</label>
+
+    <div class="number-rating" id="recommendOptions">
+        <span class="rating-label">Not likely</span>
+        <div class="number-buttons"></div>
+        <span class="rating-label">Very likely</span>
     </div>
 
-    <input type="hidden" id="rating" required>
+    <label>2. Was it easy to use our banking services?</label>
 
-    <label for="feedback">Your Feedback</label>
+    <div class="number-rating" id="easeOptions">
+        <span class="rating-label">Not easy</span>
+        <div class="number-buttons"></div>
+        <span class="rating-label">Very easy</span>
+    </div>
+
+    <label for="service">3. Which service did you use?</label>
+
+    <select id="service" required>
+        <option value="">Select a banking service</option>
+        <option>Account Opening</option>
+        <option>Money Transfer</option>
+        <option>Online Banking</option>
+        <option>Mobile Banking</option>
+        <option>Customer Support</option>
+        <option>ATM Services</option>
+        <option>Loan Services</option>
+        <option>Other</option>
+    </select>
+
+    <label for="feedback">Additional Feedback or Suggestions</label>
+
     <textarea id="feedback" rows="5"
-        placeholder="Tell us about your experience..."
+        placeholder="Tell us how we can improve..."
         required></textarea>
 
     <button type="submit" id="submitBtn">
@@ -60,6 +83,7 @@
     <p id="status"></p>
 
 </form>
+
         </section>
     </main>
 
