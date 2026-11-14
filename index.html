@@ -23,42 +23,40 @@
             <h2>Share Your Experience</h2>
             <p class="subtitle">Your feedback helps us improve.</p>
 
-            <form id="feedbackForm">
+  <form id="feedbackForm">
 
-                <label for="name">Your Name (Optional)</label>
-                <input type="text" id="name" placeholder="Enter your name">
+    <label for="name">Your Name (Optional)</label>
+    <input type="text" id="name" placeholder="Enter your name">
 
-                <label>Rate Your Experience</label>
-                <div class="stars">
-                    <span data-rating="1">★</span>
-                    <span data-rating="2">★</span>
-                    <span data-rating="3">★</span>
-                    <span data-rating="4">★</span>
-                    <span data-rating="5">★</span>
-                </div>
+    <label for="email">Email Address (Optional)</label>
+    <input type="email" id="email" placeholder="Enter your email">
 
-                <input type="hidden" id="rating" required>
+    <label for="contact">Contact Number (Optional)</label>
+    <input type="tel" id="contact" placeholder="Enter your contact number">
 
-                <label for="experience">Overall Experience</label>
-                <select id="experience" required>
-                    <option value="">Select your experience</option>
-                    <option>Excellent</option>
-                    <option>Good</option>
-                    <option>Average</option>
-                    <option>Poor</option>
-                </select>
+    <label>Rate Your Experience</label>
+    <div class="stars">
+        <span data-rating="1">★</span>
+        <span data-rating="2">★</span>
+        <span data-rating="3">★</span>
+        <span data-rating="4">★</span>
+        <span data-rating="5">★</span>
+    </div>
 
-                <label for="feedback">Your Feedback</label>
-                <textarea id="feedback" rows="5"
-                    placeholder="Tell us about your experience..."
-                    required></textarea>
+    <input type="hidden" id="rating" required>
 
-                <button type="submit" id="submitBtn">
-                    Submit Feedback
-                </button>
+    <label for="feedback">Your Feedback</label>
+    <textarea id="feedback" rows="5"
+        placeholder="Tell us about your experience..."
+        required></textarea>
 
-                <p id="status"></p>
-            </form>
+    <button type="submit" id="submitBtn">
+        Submit Feedback
+    </button>
+
+    <p id="status"></p>
+
+</form>
         </section>
     </main>
 
