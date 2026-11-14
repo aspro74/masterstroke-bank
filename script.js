@@ -1,6 +1,10 @@
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx0fJwhwgSeT4zokdjGVyd7FDbtLerFxJnGX-bfEuKlTJnO8EK-625tAB2LEL0YfMFh/exec";
+const SCRIPT_URL = "YOUR_EXISTING_GOOGLE_APPS_SCRIPT_URL";
+
+let recommendation = "";
+let ease = "";
 
 // CREATE RATING BUTTONS
+
 function createRating(containerId, count, type) {
     const container = document.querySelector(
         `#${containerId} .number-buttons`
@@ -14,58 +18,43 @@ function createRating(containerId, count, type) {
         button.type = "button";
         button.textContent = i;
 
-        // RATING COLOURS
-        if (type === "recommend") {
-            if (i >= 9) {
-                button.classList.add("high");
-            } else if (i >= 7) {
-                button.classList.add("mid");
+        button.addEventListener("click", () => {
+
+            container.querySelectorAll("button").forEach(btn => {
+                btn.classList.remove("selected");
+                btn.setAttribute("aria-pressed", "false");
+            });
+
+            button.classList.add("selected");
+            button.setAttribute("aria-pressed", "true");
+
+            if (type === "recommend") {
+                recommendation = String(i);
+            } else {
+                ease = String(i);
             }
-        } else {
-            if (i >= 6) {
-                button.classList.add("high");
-            } else if (i >= 3) {
-                button.classList.add("mid");
-            }
-        }
+        });
 
-        // SELECT RATING
-       button.addEventListener("click", () => {
-
-    // Remove previous selection
-    container.querySelectorAll("button")
-        .forEach(b => b.classList.remove("selected"));
-
-    // Highlight selected button
-    button.classList.add("selected");
-
-    // Save selected rating
-    if (type === "recommend") {
-        recommendation = String(i);
-    } else {
-        ease = String(i);
-    }
-
-});
+        button.setAttribute("aria-pressed", "false");
         container.appendChild(button);
     }
 }
 
-// SELECTED RATINGS
-let recommendation = "";
-let ease = "";
+// GENERATE BOTH RATING SCALES
 
-// GENERATE RATING BUTTONS
 createRating("recommendOptions", 10, "recommend");
 createRating("easeOptions", 7, "ease");
 
 // FORM ELEMENTS
+
 const form = document.getElementById("feedbackForm");
 const statusMessage = document.getElementById("status");
 const submitBtn = document.getElementById("submitBtn");
 
-// SUBMIT FEEDBACK
+// SUBMIT FORM
+
 form.addEventListener("submit", async (event) => {
+
     event.preventDefault();
 
     const name = document.getElementById("name").value.trim();
@@ -74,8 +63,7 @@ form.addEventListener("submit", async (event) => {
     const service = document.getElementById("service").value;
     const feedback = document.getElementById("feedback").value.trim();
 
-    // VALIDATION
-    if (!recommendation || !ease) {
+    if (recommendation === "" || ease === "") {
         statusMessage.textContent =
             "Please complete both rating categories.";
         statusMessage.style.color = "red";
@@ -104,6 +92,7 @@ form.addEventListener("submit", async (event) => {
     statusMessage.textContent = "";
 
     try {
+
         await fetch(SCRIPT_URL, {
             method: "POST",
             mode: "no-cors",
@@ -115,7 +104,6 @@ form.addEventListener("submit", async (event) => {
 
         statusMessage.textContent =
             "Thank you! Your feedback has been submitted.";
-
         statusMessage.style.color = "green";
 
         form.reset();
@@ -124,16 +112,21 @@ form.addEventListener("submit", async (event) => {
         ease = "";
 
         document.querySelectorAll(".number-buttons button")
-            .forEach(button => button.classList.remove("selected"));
+            .forEach(button => {
+                button.classList.remove("selected");
+                button.setAttribute("aria-pressed", "false");
+            });
 
     } catch (error) {
+
         statusMessage.textContent =
             "Something went wrong. Please try again.";
-
         statusMessage.style.color = "red";
 
     } finally {
+
         submitBtn.disabled = false;
         submitBtn.textContent = "Submit Feedback";
+
     }
 });
