@@ -1,6 +1,6 @@
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx0fJwhwgSeT4zokdjGVyd7FDbtLerFxJnGX-bfEuKlTJnO8EK-625tAB2LEL0YfMFh/exec";
 
-// STAR RATING SYSTEM
+// STAR RATING
 const stars = document.querySelectorAll(".stars span");
 const ratingInput = document.getElementById("rating");
 
@@ -28,11 +28,11 @@ form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const contact = document.getElementById("contact").value.trim();
     const rating = ratingInput.value;
-    const experience = document.getElementById("experience").value;
     const feedback = document.getElementById("feedback").value.trim();
 
-    // VALIDATION
     if (!rating) {
         statusMessage.textContent = "Please select a star rating.";
         statusMessage.style.color = "red";
@@ -47,8 +47,9 @@ form.addEventListener("submit", async (event) => {
 
     const data = {
         name: name || "Anonymous",
+        email: email,
+        contact: contact,
         rating: rating,
-        experience: experience,
         feedback: feedback
     };
 
