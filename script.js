@@ -30,19 +30,23 @@ function createRating(containerId, count, type) {
         }
 
         // SELECT RATING
-        button.addEventListener("click", () => {
-            container.querySelectorAll("button")
-                .forEach(b => b.classList.remove("selected"));
+       button.addEventListener("click", () => {
 
-            button.classList.add("selected");
+    // Remove previous selection
+    container.querySelectorAll("button")
+        .forEach(b => b.classList.remove("selected"));
 
-            if (type === "recommend") {
-                recommendation = String(i);
-            } else {
-                ease = String(i);
-            }
-        });
+    // Highlight selected button
+    button.classList.add("selected");
 
+    // Save selected rating
+    if (type === "recommend") {
+        recommendation = String(i);
+    } else {
+        ease = String(i);
+    }
+
+});
         container.appendChild(button);
     }
 }
