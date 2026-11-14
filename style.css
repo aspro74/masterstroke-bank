@@ -104,8 +104,8 @@ hr {
 /* RATING LAYOUT */
 
 .number-rating {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 7px;
     margin-top: 10px;
 }
@@ -115,13 +115,24 @@ hr {
     color: #687386;
 }
 
-.number-buttons {
-    display: grid;
-    grid-template-columns: repeat(11, minmax(0, 1fr));
-    gap: 6px;
-    width: 100%;
+.number-rating {
+    position: relative;
 }
 
+.number-rating .rating-label:first-child {
+    grid-row: 1;
+    justify-self: start;
+}
+
+.number-rating .rating-label:last-child {
+    grid-row: 1;
+    justify-self: end;
+}
+
+.number-rating .number-buttons {
+    grid-row: 2;
+    grid-column: 1;
+}
 /* RATING BUTTONS */
 
 .number-buttons button {
