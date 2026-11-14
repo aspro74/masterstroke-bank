@@ -187,25 +187,18 @@ header {
 
 .bank-logo {
     display: block;
-    width: 100%;
-    max-width: 650px;
+    width: 420px;
+    max-width: 85%;
     height: auto;
     margin: auto;
 }
-
-/* Mobile logo */
-
 @media (max-width: 600px) {
     header {
-        padding: 15px 10px;
+        padding: 12px 10px;
     }
 
     .bank-logo {
-        max-width: 100%;
-    }
-}
-
-    .feedback-card {
-        padding: 24px;
+        width: 300px;
+        max-width: 90%;
     }
 }
