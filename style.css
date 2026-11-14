@@ -101,11 +101,12 @@ hr {
     margin-top: 25px;
 }
 
+
 /* RATING LAYOUT */
 
 .number-rating {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 7px;
     margin-top: 10px;
 }
@@ -115,23 +116,18 @@ hr {
     color: #687386;
 }
 
-.number-rating {
-    position: relative;
-}
-
 .number-rating .rating-label:first-child {
-    grid-row: 1;
-    justify-self: start;
+    order: 1;
+    align-self: flex-start;
 }
 
 .number-rating .rating-label:last-child {
-    grid-row: 1;
-    justify-self: end;
+    order: 2;
+    align-self: flex-end;
 }
 
 .number-rating .number-buttons {
-    grid-row: 2;
-    grid-column: 1;
+    order: 3;
 }
 /* RATING BUTTONS */
 
