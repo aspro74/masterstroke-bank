@@ -1,4 +1,4 @@
-const SCRIPT_URL = "YOUR_EXISTING_GOOGLE_APPS_SCRIPT_URL";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx0fJwhwgSeT4zokdjGVyd7FDbtLerFxJnGX-bfEuKlTJnO8EK-625tAB2LEL0YfMFh/exec";
 
 let recommendation = "";
 let ease = "";
